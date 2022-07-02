@@ -1,6 +1,6 @@
 package com.example.dologinout
 
 interface LogInView {
-    fun onLogInSuccess()
+    fun onLogInSuccess(code : Int, result: Result)
     fun onLogInFailure()
 }

@@ -43,8 +43,10 @@ class AuthService {
             override fun onResponse(call: Call<AuthResponse>, response: Response<AuthResponse>) {
                 Log.d("LOGIN/SUCCESS", response.toString())
                 val resp:AuthResponse = response.body()!!
-                when(resp.code)
+                when(val code = resp.code)
                 {
+                    1000 -> logInView.onLogInSuccess(code, resp.result!!)
+                    else -> logInView.onLogInFailure()
                 }
             }
 

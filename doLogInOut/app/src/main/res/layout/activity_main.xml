@@ -7,12 +7,12 @@
     tools:context=".MainActivity">
 
     <Button
-        android:id="@+id/sign_in_bt"
+        android:id="@+id/sign_up_bt"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="sign in"
-        app:layout_constraintTop_toBottomOf="@id/put_password_et"
-        app:layout_constraintEnd_toEndOf="@id/put_password_et"
+        android:text="sign up"
+        app:layout_constraintTop_toBottomOf="@id/put_email_et"
+        app:layout_constraintEnd_toEndOf="@id/put_email_et"
         />
 
     <Button
@@ -27,10 +27,17 @@
 
     <EditText
         android:id="@+id/put_id_et"
+        android:layout_width="150dp"
+        android:layout_height="40dp"
+        app:layout_constraintTop_toBottomOf="@id/log_in_bt"
+        app:layout_constraintEnd_toStartOf="@id/put_email_et"/>
+
+    <EditText
+        android:id="@+id/put_email_et"
         android:layout_width="200dp"
         android:layout_height="40dp"
         app:layout_constraintTop_toBottomOf="@id/log_in_bt"
-        app:layout_constraintStart_toStartOf="@id/log_in_bt"/>
+        app:layout_constraintStart_toEndOf="@id/log_in_bt"/>
 
     <EditText
         android:id="@+id/put_password_et"
