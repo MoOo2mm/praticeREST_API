@@ -10,7 +10,7 @@ import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
 
-class SignUpActivity : AppCompatActivity() {
+class SignUpActivity : AppCompatActivity(), SignUpView {
 
     lateinit var binding: ActivitySignupBinding
 
@@ -42,28 +42,10 @@ class SignUpActivity : AppCompatActivity() {
             return
         }
 
-        val authService = getRetrofit().create(AuthRetrofitInterface::class.java)
-        authService.signUp(getUser()).enqueue(object: Callback<AuthResponse>{
-            override fun onResponse(call: Call<AuthResponse>, response: Response<AuthResponse>) {
-                val resp:AuthResponse = response.body()!!
-                when(resp.code)
-                {
-                    1000 -> {
-                        Log.d("signUp", resp.message)
-                        finish() // 현 activity를 종료
-                    }
-                    2016, 2018 -> {
-                        binding.signUpEmailErrorTv.visibility = View.VISIBLE
-                        binding.signUpEmailErrorTv.text = resp.message
-                    }
+        val authService = AuthService()
+        authService.setSignUpView(this)
 
-                }
-            }
-
-            override fun onFailure(call: Call<AuthResponse>, t: Throwable) {
-                TODO("Not yet implemented")
-            }
-        })
+        authService.signUp(getUser())
     }
 
     private fun getUser() : User {
@@ -72,5 +54,13 @@ class SignUpActivity : AppCompatActivity() {
         val name: String = binding.signUpNameEt.text.toString()
 
         return User(email, pwd, name)
+    }
+
+    override fun onSignUpFailure() {
+        TODO("Not yet implemented") // 각각 상태처리
+    }
+
+    override fun onSignUpSuccess() {
+        finish()
     }
 }
